@@ -7,6 +7,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.TimedRobot;
 import frc.robot.utils.Candle;
+import frc.robot.utils.Candle.LEDState;
 
 
 
@@ -19,7 +20,7 @@ import frc.robot.utils.Candle;
 public class Robot extends TimedRobot {
   
   private final Candle candle = Candle.getInstance();
-  private final int limitPort = -1;
+  private final int limitPort = 0;
   private final DigitalInput limit = new DigitalInput(limitPort);
 
   /**
@@ -40,8 +41,13 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
+  if(limit.get()){
+candle.changeLedState(LEDState.Fire);
+  } else {
+candle.changeLedState(LEDState.Larson);
+  }
 
-    candle.periodic(); // Used to run the periodic in the Candle Util
+  candle.periodic(); // Used to run the periodic in the Candle Util
 
   }
 

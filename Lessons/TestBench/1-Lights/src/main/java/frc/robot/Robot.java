@@ -4,9 +4,12 @@
 
 package frc.robot;
 
+import com.ctre.phoenix.led.RainbowAnimation;
+
 import edu.wpi.first.wpilibj.TimedRobot;
 import frc.robot.utils.Candle;
 import frc.robot.utils.Candle.LEDState;
+
 
 
 
@@ -26,6 +29,11 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
+
+    // candle.changeLedState(LEDState.ColorFlow);
+
+    candle.setToAnimation(new RainbowAnimation(1, 0.65, 69));
+
   }
 
   /**

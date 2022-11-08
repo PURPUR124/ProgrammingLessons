@@ -10,6 +10,8 @@ import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.utils.Candle;
 import static frc.robot.Constants.JoystickConstants;
 
+import com.ctre.phoenix.led.CANdle;
+
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
  * each mode, as described in the TimedRobot documentation. If you change the name of this class or
@@ -65,7 +67,13 @@ public class Robot extends TimedRobot {
 
   /** This function is called periodically during operator control. */
   @Override
- public void teleopPeriodic() {}
+ public void teleopPeriodic() {
+  if(controller.getAButtonPressed()){
+    candle.setAllToColor(245, 10, 220);
+  } else {
+    candle.setAllToColor(200, 69, 255);
+  }
+ }
 
   /** This function is called once when the robot is disabled. */
   @Override

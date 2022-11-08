@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.I2C.Port;
 import edu.wpi.first.wpilibj.util.Color;
 import frc.robot.utils.Candle;
 import com.revrobotics.ColorSensorV3;
+import com.revrobotics.ColorSensorV3.ProximitySensorMeasurementRate;
 
 
 
@@ -42,7 +43,13 @@ public class Robot extends TimedRobot {
   public void robotPeriodic() {
 
     candle.periodic(); // Used to run the periodic in the Candle Util
-
+    int b = 255;
+    int g = 255;
+    int r = 255;
+    g = (colorSensor.getProximity() / 2047) * g;
+    b = (colorSensor.getProximity() / 2047) * b;
+    r = (colorSensor.getProximity() / 2047) * r;
+    candle.setAllToColor(r, b, g);
   }
 
   /** This function is called once when teleop is enabled. */
@@ -53,12 +60,9 @@ public class Robot extends TimedRobot {
   /** This function is called periodically during operator control. */
   @Override
   public void teleopPeriodic() {
-    Color sensedColor = colorSensor.getColor();
-    double proximity = colorSensor.getProximity() / 2047.0;
-    int r = (int)(sensedColor.red * 255 * proximity);
-    int g = (int)(sensedColor.green * 255 * proximity);
-    int b = (int)(sensedColor.blue * 255 * proximity);
-    candle.setAllToColor(r, g, b);
+
+    
+
   }
 
   /** This function is called once when the robot is disabled. */
